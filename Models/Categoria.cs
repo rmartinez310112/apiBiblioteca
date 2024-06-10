@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace ApiBiblioteca.Models;
-
-public partial class Categoria
+namespace ApiBiblio.Models
 {
-    public int IdCategoria { get; set; }
+    public class Categoria
+    {
+        [Key]
+        public int IdCategoria { get; set; }
 
-    public string? Nombre { get; set; }
-
-    public DateTime? FechaCreacion { get; set; }
-
-    public virtual ICollection<Libro> Libros { get; set; } = new List<Libro>();
+        public string? Nombre { get; set; }
+    }
 }

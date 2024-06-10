@@ -1,10 +1,13 @@
-using Microsoft.EntityFrameworkCore;
-using ApiBiblioteca.Models;
+using ApiBiblio.Application;
+using ApiBiblio.Interfaces;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddScoped<IBookApplication, bookApplication>();
+builder.Services.AddScoped<ILoanApplication, LoanApplication>();
+
 var misReglasCors = "ReglasCors";
 builder.Services.AddCors(options =>
 {
@@ -19,12 +22,12 @@ builder.Services.AddCors(options =>
                       });
 });
 
+
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
-builder.Services.AddDbContext<DbBibliotecaContext>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("cadenaSQL")));
 
 builder.Services.AddControllers().AddJsonOptions(opt =>
 {
@@ -41,6 +44,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseCors(misReglasCors);
+
+app.UseHttpsRedirection();
 
 app.UseAuthorization();
 

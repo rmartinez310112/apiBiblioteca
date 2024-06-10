@@ -1,17 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace ApiBiblioteca.Models;
-
-public partial class Usuario
+namespace ApiBiblio.Models
 {
-    public int IdUsuario { get; set; }
+    public class Usuario
+    {
+        [Key]
+        public int Id { get; set; }
 
-    public string? NombreCompleto { get; set; }
+        public string? Nombres { get; set; }
 
-    public string? NombreUsuario { get; set; }
+        public string? Apellidos { get; set; }
 
-    public string? Clave { get; set; }
-
-    public DateTime? FechaCreacion { get; set; }
+        public DateTime? FechaCreacion { get; set; }
+    }
 }
